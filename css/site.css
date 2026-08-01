@@ -319,8 +319,105 @@ body {
   padding-block: 3rem;
 }
 
-.route__label {
+.route__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
   margin-bottom: 2rem;
+}
+
+.route__label {
+  margin-bottom: 0;
+}
+
+.route__expand {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  background: none;
+  color: var(--light);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease-out), background-color 0.25s var(--ease-out);
+}
+
+.route__expand:hover,
+.route__expand:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ---------- Progressive disclosure ----------
+   Native details/summary. The bullets are real DOM text at page load,
+   never injected on click, so crawlers, ATS parsers and find-in-page
+   all reach them whether or not anyone opens the control. */
+
+.stop__more {
+  margin-top: 1rem;
+}
+
+.stop__more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  transition: color 0.25s var(--ease-out);
+}
+
+.stop__more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.stop__more > summary::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 0.25s var(--ease-out);
+}
+
+.stop__more[open] > summary::before {
+  transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+.stop__more > summary:hover,
+.stop__more > summary:focus-visible {
+  color: var(--accent);
+}
+
+.stop__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+  padding-left: 0.875rem;
+  border-left: 1px solid var(--hairline);
+}
+
+.stop__detail li {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--mid);
+  max-width: 52ch;
+}
+
+.stop__detail strong {
+  color: var(--light);
+  font-weight: 600;
 }
 
 /* Mobile default: static SVG route diagram, no WebGL */
@@ -340,6 +437,34 @@ body {
 
 .route__canvas {
   display: none;
+}
+
+/* One caption for the whole four-state fan. Four separate labels would
+   collide at this zoom on a laptop and be unreadable on a phone. */
+.route__fan-caption {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Under WebGL the caption belongs to the Kochi stop, so it fades with it. */
+.route--webgl .route__fan-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+  pointer-events: none;
+}
+
+.route--webgl .route__fan-caption.is-on {
+  opacity: 1;
 }
 
 .route__stops {

@@ -48,6 +48,18 @@
   var STOP_DIST = [2.0, 1.85, 1.8, 1.75, 2.0];
   var TRANSIT_DIST = 3.0;
 
+  /* The GSRV fieldwork reached four state markets out of Kochi. Anchored on
+     each state's principal city rather than a centroid, so the geography
+     reads correctly at this zoom. This is the only stop with sub-markers:
+     used anywhere else the device would stop meaning anything. */
+  var FAN_STOP = 1;
+  var FAN = [
+    { name: 'Bengaluru', lat: 12.9716, lon: 77.5946 },
+    { name: 'Chennai', lat: 13.0827, lon: 80.2707 },
+    { name: 'Hyderabad', lat: 17.3850, lon: 78.4867 },
+    { name: 'Visakhapatnam', lat: 17.6868, lon: 83.2185 }
+  ];
+
   /* ------------------------------------------------
      1. ACTIVE STOP TRACKING
      Runs on every device and every code path, WebGL
@@ -65,6 +77,29 @@
   }
 
   stops[0].classList.add('is-active');
+
+  /* Expand all. Runs on every code path, WebGL or not, because the
+     disclosure is part of the record rather than part of the animation. */
+  var expandBtn = document.getElementById('route-expand');
+  if (expandBtn) {
+    var panels = Array.prototype.slice.call(list.querySelectorAll('details.stop__more'));
+
+    function syncBtn() {
+      var allOpen = panels.length > 0 && panels.every(function (d) { return d.open; });
+      expandBtn.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+      expandBtn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+    }
+
+    expandBtn.addEventListener('click', function () {
+      var open = expandBtn.getAttribute('aria-expanded') !== 'true';
+      panels.forEach(function (d) { d.open = open; });
+      syncBtn();
+    });
+
+    // Opening or closing one panel by hand keeps the control honest.
+    panels.forEach(function (d) { d.addEventListener('toggle', syncBtn); });
+    syncBtn();
+  }
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -214,13 +249,14 @@
     return { group: group, fillMat: fillMat, edgeMat: edgeMat };
   }
 
-  function arcPoints(THREE, a, b, segments) {
+  function arcPoints(THREE, a, b, segments, bulge) {
     var pts = [];
+    bulge = bulge === undefined ? 0.16 : bulge;
     for (var i = 0; i <= segments; i++) {
       var t = i / segments;
       var v = a.clone().lerp(b, t).normalize();
       // Lift the middle of the arc off the surface so the route reads as a path.
-      v.multiplyScalar(RADIUS * (1 + 0.16 * Math.sin(Math.PI * t)));
+      v.multiplyScalar(RADIUS * (1 + bulge * Math.sin(Math.PI * t)));
       pts.push(v);
     }
     return pts;
@@ -298,6 +334,26 @@
       line.geometry.setDrawRange(0, 0);
       globe.add(line);
       arcs.push({ line: line, count: segs + 1 });
+    }
+
+    /* Four dashed arcs out of Kochi, one per state market the GSRV fieldwork
+       reached. Thinner, lower contrast and shallower than the main route, so
+       the five-stop journey stays the dominant line. */
+    var fanArcs = [];
+    var fanCaption = document.getElementById('route-fan-caption');
+    for (var f = 0; f < FAN.length; f++) {
+      var fanSegs = 40;
+      var fanGeo = new THREE.BufferGeometry().setFromPoints(
+        arcPoints(THREE, vectors[FAN_STOP], toVec(THREE, FAN[f].lat, FAN[f].lon), fanSegs, 0.045)
+      );
+      var fanMat = new THREE.LineDashedMaterial({
+        color: ACCENT, transparent: true, opacity: 0, dashSize: 0.012, gapSize: 0.010
+      });
+      var fanLine = new THREE.Line(fanGeo, fanMat);
+      fanLine.computeLineDistances();
+      fanLine.geometry.setDrawRange(0, 0);
+      globe.add(fanLine);
+      fanArcs.push({ line: fanLine, mat: fanMat, count: fanSegs + 1 });
     }
 
     /* Orientation that brings each stop to face the camera with north up.
@@ -380,6 +436,15 @@
         regions[key].fillMat.opacity = v * 0.30;
         regions[key].edgeMat.opacity = v;
       }
+
+      /* The fan draws in as Kochi arrives and settles. It belongs to that one
+         stop, so it fades out again rather than persisting down the page. */
+      var fanNear = Math.max(0, 1 - Math.abs(progress - FAN_STOP) * 1.6);
+      for (var a = 0; a < fanArcs.length; a++) {
+        fanArcs[a].mat.opacity = fanNear * 0.55;
+        fanArcs[a].line.geometry.setDrawRange(0, Math.round(fanArcs[a].count * fanNear));
+      }
+      if (fanCaption) fanCaption.classList.toggle('is-on', fanNear > 0.55);
     }
 
     function frame() {

@@ -140,7 +140,7 @@
           <div class="proof__col">
             <h2 class="proof__verb">Sell it</h2>
             <p class="proof__item"><strong>$100K pre-series raise</strong> closed with international investors</p>
-            <p class="proof__item"><strong>500+ consumer interviews</strong> across 4 markets to establish
+            <p class="proof__item"><strong>500+ consumer interviews</strong> across 4 Indian state markets to establish
               product-market fit</p>
           </div>
 
@@ -151,7 +151,10 @@
     <!-- ============ THE ROUTE ============ -->
     <section class="route" id="route" aria-label="Career route">
       <div class="wrap">
-        <p class="t-label route__label">Sri City · Kochi · Dubai · Madrid · Anantapur</p>
+        <div class="route__head">
+          <p class="t-label route__label">Sri City · Kochi · Dubai · Madrid · Anantapur</p>
+          <button type="button" class="route__expand" id="route-expand" aria-expanded="false">Expand all</button>
+        </div>
 
         <div class="route__grid">
 
@@ -170,6 +173,19 @@
                 <path d="M124.2 96.6 Q80.1 66.6 54.4 67.5" />
                 <path d="M54.4 67.5 Q111.3 70.1 155.5 106.4" />
               </g>
+              <g fill="none" stroke="#c8a05a" stroke-width="0.6" stroke-opacity="0.5"
+                stroke-dasharray="1.4 1.4" stroke-linecap="round">
+                <path d="M154.9 114.1 Q161.3 112.8 155.9 109.0" />
+                <path d="M154.9 114.1 Q162.8 112.1 159.0 107.8" />
+                <path d="M154.9 114.1 Q161.3 108.9 155.8 102.0" />
+                <path d="M154.9 114.1 Q163.8 107.6 160.9 99.6" />
+              </g>
+              <g fill="#c8a05a" fill-opacity="0.6">
+                <circle cx="155.9" cy="109.0" r="1.1" />
+                <circle cx="159.0" cy="107.8" r="1.1" />
+                <circle cx="155.8" cy="102.0" r="1.1" />
+                <circle cx="160.9" cy="99.6" r="1.1" />
+              </g>
               <g fill="#c8a05a">
                 <circle cx="158.5" cy="107.2" r="2.6" />
                 <circle cx="154.9" cy="114.1" r="2.6" />
@@ -179,6 +195,7 @@
               </g>
             </svg>
             <canvas class="route__canvas" id="route-canvas" aria-hidden="true"></canvas>
+            <p class="route__fan-caption" id="route-fan-caption">500+ interviews &middot; 4 state markets</p>
           </div>
 
           <!-- Stops: each one is a complete CV entry, real text in the DOM -->
@@ -189,9 +206,16 @@
               <p class="stop__place">Sri City, Andhra Pradesh, India</p>
               <h3 class="stop__org">Krea University</h3>
               <p class="stop__role">Research Assistant</p>
-              <p class="stop__dates">Nov 2021 – Jul 2023</p>
-              <p class="stop__metric">Geo-processed <strong>200+ road stretches</strong> from 10 years of NHAI data,
-                modelling infrastructure ROI against regional development.</p>
+              <p class="stop__dates">Nov 2021 &ndash; Jul 2023</p>
+              <p class="stop__metric"><strong>200+ road stretches</strong>, 10 years of NHAI data, infrastructure ROI.</p>
+              <details class="stop__more">
+                <summary>The detail</summary>
+                <ul class="stop__detail">
+                    <li>Geo-processed the road network in ArcGIS, then built econometric models measuring how road investment translates into regional development.</li>
+                    <li>Completed <strong>40+ case studies on predictive tools and digital payment systems</strong>.</li>
+                    <li>Researched environmental economics and the Earth System Boundaries framework.</li>
+                </ul>
+              </details>
             </li>
 
             <li class="stop" data-lat="9.9312" data-lon="76.2673">
@@ -199,9 +223,17 @@
               <p class="stop__place">Kochi, Kerala, India</p>
               <h3 class="stop__org">GSRV &amp; Associates</h3>
               <p class="stop__role">Market Research Analyst</p>
-              <p class="stop__dates">Sep 2023 – Nov 2023</p>
-              <p class="stop__metric">Ran 500+ consumer interviews across 4 markets, then built the feasibility model
-                behind a <strong>$100K pre-series raise</strong>.</p>
+              <p class="stop__dates">Sep 2023 &ndash; Nov 2023</p>
+              <p class="stop__metric"><strong>500+ interviews</strong> across 4 state markets, behind a <strong>$100K raise</strong>.</p>
+              <details class="stop__more">
+                <summary>The detail</summary>
+                <ul class="stop__detail">
+                    <li>The four markets: <strong>Karnataka, Tamil Nadu, Telangana and Andhra Pradesh</strong>. Fieldwork for a sustainable footwear line.</li>
+                    <li>Translated the research into a feasibility model covering pricing and cost structure.</li>
+                    <li>Built investor-grade models, KPI dashboards and pitch materials.</li>
+                    <li>Owned the investor relationship through due diligence.</li>
+                </ul>
+              </details>
             </li>
 
             <li class="stop" data-lat="25.2048" data-lon="55.2708">
@@ -209,9 +241,17 @@
               <p class="stop__place">Dubai, UAE</p>
               <h3 class="stop__org">FourEM Global FZE</h3>
               <p class="stop__role">Business Development Manager</p>
-              <p class="stop__dates">Nov 2023 – Aug 2025</p>
-              <p class="stop__metric"><strong>$3.5M Kraft paper trade line</strong> across India and Sri Lanka,
-                underwritten and owned end to end, turned over in <strong>9 months</strong>.</p>
+              <p class="stop__dates">Nov 2023 &ndash; Aug 2025</p>
+              <p class="stop__metric"><strong>$3.5M Kraft paper trade line</strong>, owned end to end, <strong>9 months</strong>.</p>
+              <details class="stop__more">
+                <summary>The detail</summary>
+                <ul class="stop__detail">
+                    <li>The gap: local mills could not meet quality benchmarks, leaving buyers stuck on fragmented imports.</li>
+                    <li>Scenario DCF stress-tested across shipping, raw material, blending and labour.</li>
+                    <li>Primary research on willingness to pay, demand fundamentals and competitor cost structure.</li>
+                    <li>Supply partnership with <strong>XO PACK PVT LTD</strong>. <strong>20+ people</strong> coordinated across 2 markets.</li>
+                </ul>
+              </details>
             </li>
 
             <li class="stop" data-lat="40.4168" data-lon="-3.7038">
@@ -219,9 +259,16 @@
               <p class="stop__place">Madrid, Spain</p>
               <h3 class="stop__org">IE Business School</h3>
               <p class="stop__role">Master in Applied Economics and Master in Management</p>
-              <p class="stop__dates">Sep 2024 – Jul 2026</p>
-              <p class="stop__metric">Tech Venture Lab finalist. Built an AI-led retention approach with a
-                <strong>projected 45% loyalty uplift</strong>, pitched to the Hyundai España CTO and CEO.</p>
+              <p class="stop__dates">Sep 2024 &ndash; Jul 2026</p>
+              <p class="stop__metric">Tech Venture Lab finalist, <strong>projected 45% loyalty uplift</strong>.</p>
+              <details class="stop__more">
+                <summary>The detail</summary>
+                <ul class="stop__detail">
+                    <li>Two degrees, separately conferred: Management in December 2025, GPA 3.64 / 4.0, and Applied Economics in July 2026.</li>
+                    <li>Derivatives pricing; market risk and counterparty credit risk; VaR, Expected Shortfall, EPE and PFE.</li>
+                    <li>Defined the CAC and payback thresholds on the Hyundai Espa&ntilde;a work, pitched to the CTO and CFO.</li>
+                </ul>
+              </details>
             </li>
 
             <li class="stop" data-lat="14.6819" data-lon="77.6006">
@@ -229,9 +276,17 @@
               <p class="stop__place">Anantapur, Andhra Pradesh, India</p>
               <h3 class="stop__org">Vaayubon</h3>
               <p class="stop__role">Co-Founder and Chief Financial Officer</p>
-              <p class="stop__dates">Sep 2025 – Present</p>
-              <p class="stop__metric"><strong>150+ farmers</strong> aggregated against a carbon removal thesis.
-                Conversion facility in build-out, outcome still open.</p>
+              <p class="stop__dates">Sep 2025 &ndash; Present</p>
+              <p class="stop__metric"><strong>150+ farmers</strong> aggregated, facility in build-out, outcome open.</p>
+              <details class="stop__more">
+                <summary>The detail</summary>
+                <ul class="stop__detail">
+                    <li><strong>10-member core team.</strong> Feedstock network of <strong>150+ farmers</strong> under aggregation agreements, counted separately from the team.</li>
+                    <li>Built on an Article 6 thesis: agricultural residue converted by pyrolysis into durable biochar, the profile removal buyers pay a premium for.</li>
+                    <li>Modelled positive contribution margin with negative working capital, financed through forward offtakes. Evaluating Puro.earth and Verra methodologies.</li>
+                    <li>Pitched 15+ investors. IE Venture Day winner, no round closed. Digital MRV is roadmap rather than built.</li>
+                </ul>
+              </details>
             </li>
 
           </ol>
