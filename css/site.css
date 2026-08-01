@@ -1,0 +1,867 @@
+/* ================================================
+   MANU MYTHIL MURALEE
+   Mobile-first layer for the rebuilt Home / CV pages.
+
+   Loaded AFTER style.css. style.css is desktop-first
+   (max-width queries) and still serves the legacy
+   project pages; everything below is mobile-first
+   (min-width queries) and owns the new components.
+   ================================================ */
+
+:root {
+  --accent: #c8a05a;
+  --accent-soft: rgba(200, 160, 90, 0.16);
+  --hairline: rgba(255, 255, 255, 0.10);
+  --hairline-strong: rgba(255, 255, 255, 0.20);
+  --measure: 62ch;
+}
+
+/* ---------- BASE (mobile first) ---------- */
+
+body {
+  font-size: 1rem;
+  /* never below 16px */
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* Tap targets: 44px minimum everywhere it matters */
+.nav3__link,
+.footer3__link,
+.inline-link,
+.btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.inline-link {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  transition: color 0.25s var(--ease-out);
+}
+
+.inline-link:hover,
+.inline-link:focus-visible {
+  color: var(--accent);
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ================================================
+   NAV — three items, nothing else
+   ================================================ */
+
+.nav3 {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(13, 13, 13, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.nav3__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 60px;
+}
+
+.nav3__logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.nav3__list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 3vw, 2rem);
+}
+
+.nav3__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mid);
+  padding-inline: 0.125rem;
+  transition: color 0.25s var(--ease-out);
+}
+
+.nav3__link:hover,
+.nav3__link:focus-visible,
+.nav3__link[aria-current="page"] {
+  color: var(--white);
+}
+
+.nav3__link[aria-current="page"] {
+  box-shadow: inset 0 -1px 0 0 var(--accent);
+}
+
+@media (min-width: 768px) {
+  .nav3__inner {
+    min-height: 76px;
+  }
+
+  .nav3__logo {
+    font-size: 1.0625rem;
+  }
+}
+
+/* ================================================
+   HERO — the whole argument, above the fold
+   ================================================ */
+
+.hero3 {
+  padding-block: 2.5rem 3rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.hero3__name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2rem, 8vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.25rem;
+}
+
+.hero3__degree {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--light);
+  max-width: var(--measure);
+  margin-bottom: 1.75rem;
+}
+
+.hero3__degree strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* The second paragraph does the real work: model, market, deal, result */
+.hero3__proof {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--light);
+  max-width: var(--measure);
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  margin-bottom: 2rem;
+}
+
+.hero3__proof strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.hero3__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--mid);
+  margin-bottom: 1.75rem;
+}
+
+.hero3__available {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.hero3__available::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.6rem;
+  vertical-align: 0.12em;
+}
+
+/* Contact strip — visible in the first viewport */
+.contact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-strip__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.625rem 1.125rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: border-color 0.25s var(--ease-out), background-color 0.25s var(--ease-out);
+}
+
+.contact-strip__link:hover,
+.contact-strip__link:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.contact-strip__link svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.hero3__skip {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--mid);
+}
+
+@media (min-width: 768px) {
+  .hero3 {
+    padding-block: 4.5rem 5rem;
+  }
+
+  .hero3__degree {
+    font-size: 1.0625rem;
+  }
+
+  .hero3__proof {
+    font-size: 1.1875rem;
+    padding-left: 1.5rem;
+  }
+
+  .hero3__meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+  }
+}
+
+/* ================================================
+   PROOF STRIP — Model it / Price it / Sell it
+   ================================================ */
+
+.proof {
+  padding-block: 3rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.proof__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.proof__col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.proof__verb {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--accent);
+}
+
+.proof__item {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--mid);
+}
+
+.proof__item strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .proof {
+    padding-block: 4.5rem;
+  }
+
+  .proof__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* ================================================
+   GLOBE — scroll-reactive, never scroll-hijacking
+   ================================================ */
+
+.route {
+  position: relative;
+  padding-block: 3rem;
+}
+
+.route__label {
+  margin-bottom: 2rem;
+}
+
+/* Mobile default: static SVG route diagram, no WebGL */
+.route__stage {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.route__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.route__canvas {
+  display: none;
+}
+
+.route__stops {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  counter-reset: stop;
+}
+
+.stop {
+  position: relative;
+  padding-left: 2.25rem;
+  border-left: 1px solid var(--hairline);
+  padding-bottom: 0.5rem;
+}
+
+.stop::before {
+  counter-increment: stop;
+  content: counter(stop);
+  position: absolute;
+  left: -0.8125rem;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--black);
+  border: 1px solid var(--hairline-strong);
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--mid);
+  transition: border-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+
+.stop.is-active::before {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.stop__beat {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.625rem;
+}
+
+.stop__place {
+  font-size: 0.875rem;
+  color: var(--mid);
+  margin-bottom: 0.375rem;
+}
+
+.stop__org {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 0.375rem;
+}
+
+.stop__role {
+  font-size: 0.9375rem;
+  color: var(--light);
+  margin-bottom: 0.25rem;
+}
+
+.stop__dates {
+  font-size: 0.875rem;
+  color: var(--mid);
+  margin-bottom: 0.875rem;
+}
+
+.stop__metric {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--light);
+  max-width: 46ch;
+}
+
+.stop__metric strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+@media (min-width: 900px) {
+  .route {
+    padding-block: 5rem;
+  }
+
+  /* Desktop: WebGL globe sticks alongside the stops */
+  .route__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .route__stage {
+    position: sticky;
+    top: 96px;
+    margin-bottom: 0;
+    aspect-ratio: 1;
+    max-height: calc(100vh - 160px);
+  }
+
+  .route__stops {
+    gap: 0;
+  }
+
+  .stop {
+    /* Each stop occupies enough scroll to drive one camera move.
+       Native scroll only — the globe reacts, it never takes over. */
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.4;
+    transition: opacity 0.5s var(--ease-out);
+  }
+
+  .stop.is-active {
+    opacity: 1;
+  }
+
+  /* Keep the marker beside its own text, not at the top of a tall block */
+  .stop::before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .stop__org {
+    font-size: 2rem;
+  }
+}
+
+/* When WebGL is live, the canvas replaces the static SVG */
+.route--webgl .route__svg {
+  display: none;
+}
+
+.route--webgl .route__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================================================
+   CLOSING CARD
+   ================================================ */
+
+.close-card {
+  padding-block: 3rem 4rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.close-card__lead {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  max-width: 20ch;
+  margin-bottom: 2rem;
+}
+
+.close-card__pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.close-card__half {
+  padding-top: 1rem;
+  border-top: 1px solid var(--accent);
+}
+
+.close-card__when {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.625rem;
+}
+
+.close-card__text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--light);
+}
+
+.close-card__text strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.close-card__avail {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--light);
+  max-width: var(--measure);
+  margin-bottom: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .close-card {
+    padding-block: 5rem 6rem;
+  }
+
+  .close-card__pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+
+.footer3 {
+  border-top: 1px solid var(--hairline);
+  padding-block: 2.5rem;
+}
+
+.footer3__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer3__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+.footer3__link {
+  font-size: 0.9375rem;
+  color: var(--mid);
+  transition: color 0.25s var(--ease-out);
+}
+
+.footer3__link:hover,
+.footer3__link:focus-visible {
+  color: var(--white);
+}
+
+.footer3__meta {
+  font-size: 0.8125rem;
+  color: var(--mid);
+}
+
+@media (min-width: 768px) {
+  .footer3__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ================================================
+   CV PAGE — plain, copy-pasteable, no animation
+   ================================================ */
+
+.cv {
+  padding-block: 2.5rem 4rem;
+}
+
+.cv__head {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 2.5rem;
+}
+
+.cv__name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.875rem, 7vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.cv__title {
+  font-size: 1.0625rem;
+  color: var(--light);
+  max-width: var(--measure);
+  margin-bottom: 1.25rem;
+}
+
+.cv__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--mid);
+  margin-bottom: 1.5rem;
+}
+
+.cv__section {
+  margin-bottom: 3rem;
+}
+
+.cv__h2 {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 1.75rem;
+}
+
+.cv__entry {
+  margin-bottom: 2.25rem;
+}
+
+.cv__entry:last-child {
+  margin-bottom: 0;
+}
+
+.cv__entry-head {
+  margin-bottom: 0.875rem;
+}
+
+.cv__org {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.cv__role {
+  font-size: 1rem;
+  color: var(--light);
+  margin-top: 0.25rem;
+}
+
+.cv__when {
+  font-size: 0.875rem;
+  color: var(--mid);
+  margin-top: 0.25rem;
+}
+
+.cv__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.cv__list li {
+  position: relative;
+  padding-left: 1.125rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--light);
+  max-width: 78ch;
+}
+
+.cv__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.cv__list strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.cv__inline {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--light);
+  max-width: 78ch;
+}
+
+.cv__inline dt {
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 1rem;
+}
+
+.cv__inline dt:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .cv {
+    padding-block: 4rem 6rem;
+  }
+
+  .cv__entry-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .cv__when {
+    margin-top: 0;
+    flex: none;
+    text-align: right;
+  }
+
+  .cv__org {
+    font-size: 1.375rem;
+  }
+}
+
+/* ================================================
+   REDIRECT STUB
+   ================================================ */
+
+.redirect {
+  min-height: 70vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.redirect__inner {
+  max-width: 32rem;
+}
+
+.redirect__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.redirect__text {
+  color: var(--mid);
+  margin-bottom: 1.75rem;
+}
+
+/* ================================================
+   REDUCED MOTION — fully static path
+   ================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .stop {
+    opacity: 1 !important;
+    min-height: 0 !important;
+    padding-bottom: 2rem;
+  }
+
+  .route__stage {
+    position: static !important;
+  }
+
+  .route__stops {
+    gap: 2.5rem;
+  }
+}
+
+/* ================================================
+   PRINT — the CV must print clean
+   ================================================ */
+
+@media print {
+
+  .nav3,
+  .footer3,
+  .contact-strip,
+  .cv__download {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .cv__org,
+  .cv__list strong,
+  .cv__inline dt {
+    color: #000 !important;
+  }
+
+  .cv__role,
+  .cv__list li,
+  .cv__inline {
+    color: #222 !important;
+  }
+
+  .cv__h2 {
+    color: #000 !important;
+    border-color: #999 !important;
+  }
+
+  .cv__entry {
+    break-inside: avoid;
+  }
+}

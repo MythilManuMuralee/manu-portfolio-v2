@@ -1,0 +1,4 @@
+# Staging copy. The canonical site is https://manumythilmuralee.com
+# Delete this file when this repo becomes the primary site.
+User-agent: *
+Disallow: /
