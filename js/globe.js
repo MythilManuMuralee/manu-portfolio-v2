@@ -80,26 +80,33 @@
 
   /* Expand all. Runs on every code path, WebGL or not, because the
      disclosure is part of the record rather than part of the animation. */
-  var expandBtn = document.getElementById('route-expand');
-  if (expandBtn) {
-    var panels = Array.prototype.slice.call(list.querySelectorAll('details.stop__more'));
+  /* Two independent tiers: the facts, and the reasoning. Each has its own
+     control, and opening one never closes the other. */
+  function wireExpander(btnId, selector, label) {
+    var btn = document.getElementById(btnId);
+    if (!btn) return;
+    var panels = Array.prototype.slice.call(list.querySelectorAll(selector));
+    if (!panels.length) return;
 
-    function syncBtn() {
-      var allOpen = panels.length > 0 && panels.every(function (d) { return d.open; });
-      expandBtn.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
-      expandBtn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+    function sync() {
+      var allOpen = panels.every(function (d) { return d.open; });
+      btn.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+      btn.textContent = (allOpen ? 'Collapse all' : 'Expand all') + label;
     }
 
-    expandBtn.addEventListener('click', function () {
-      var open = expandBtn.getAttribute('aria-expanded') !== 'true';
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
       panels.forEach(function (d) { d.open = open; });
-      syncBtn();
+      sync();
     });
 
     // Opening or closing one panel by hand keeps the control honest.
-    panels.forEach(function (d) { d.addEventListener('toggle', syncBtn); });
-    syncBtn();
+    panels.forEach(function (d) { d.addEventListener('toggle', sync); });
+    sync();
   }
+
+  wireExpander('route-expand', 'details.stop__detail-panel', '');
+  wireExpander('route-expand-think', 'details.stop__think', ' thinking');
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

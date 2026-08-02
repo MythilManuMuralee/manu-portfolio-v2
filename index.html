@@ -75,12 +75,20 @@
     <!-- ============ HERO ============ -->
     <header class="hero3">
       <div class="wrap">
-        <h1 class="hero3__name">Manu Mythil Muralee</h1>
+        <div class="hero3__top">
+          <h1 class="hero3__name">Manu Mythil Muralee</h1>
+          <picture>
+            <source srcset="images/manu-headshot.webp" type="image/webp">
+            <img class="portrait hero3__portrait" src="images/manu-headshot-opt.jpg"
+              alt="Manu Mythil Muralee" width="360" height="360" decoding="async"
+              loading="eager" fetchpriority="high">
+          </picture>
+        </div>
 
         <p class="hero3__degree">
           Applied economist and business strategist. Dual Master's from IE Business School, both conferred:
-          <strong>Applied Economics</strong>, fintech and AI specialisation, July 2026, and
-          <strong>Management</strong>, covering strategy and organisational transformation, December 2025.
+          <strong>Applied Economics</strong>, fintech and AI, and <strong>Management</strong>, strategy and
+          organisational transformation.
         </p>
 
         <p class="hero3__proof">
@@ -140,16 +148,17 @@
           <div class="proof__col">
             <h2 class="proof__verb">Sell it</h2>
             <p class="proof__item"><strong>$100K pre-series raise</strong> closed with international investors</p>
-            <p class="proof__item"><strong>500+ consumer interviews</strong> across 4 Indian state markets to establish
-              product-market fit</p>
+            <p class="proof__item"><strong>500+ consumer interviews</strong> across 4 Indian state markets</p>
           </div>
 
           <div class="proof__col">
             <h2 class="proof__verb">Ship it</h2>
-            <p class="proof__item"><strong>Wall-Et</strong>: voice and photo inputs converted to structured spending
-              predictions through LLM orchestration, computer vision and NLP</p>
-            <p class="proof__item"><strong>System Shift Portfolio</strong>: ESG allocation mapped across the full
-              stakeholder chain</p>
+            <p class="proof__item"><picture><source srcset="images/wallet-logo.webp" type="image/webp"><img
+                class="proof__mark" src="images/wallet-logo.png" alt="" width="128" height="82" loading="lazy"
+                decoding="async"></picture><strong>Wall-Et</strong>: voice and photo inputs to spending predictions, via LLM orchestration, computer vision and NLP</p>
+            <p class="proof__item"><picture><source srcset="images/ssp-logo.webp" type="image/webp"><img
+                class="proof__mark" src="images/ssp-logo.png" alt="" width="128" height="102" loading="lazy"
+                decoding="async"></picture><strong>System Shift Portfolio</strong>: ESG allocation across the full stakeholder chain</p>
           </div>
 
         </div>
@@ -161,7 +170,11 @@
       <div class="wrap">
         <div class="route__head">
           <p class="t-label route__label">The route</p>
-          <button type="button" class="route__expand" id="route-expand" aria-expanded="false">Expand all</button>
+          <span class="route__controls">
+            <button type="button" class="route__expand" id="route-expand" aria-expanded="false">Expand all</button>
+            <button type="button" class="route__expand" id="route-expand-think"
+              aria-expanded="false">Expand all thinking</button>
+          </span>
         </div>
 
         <div class="route__grid">
@@ -216,7 +229,8 @@
               <p class="stop__role">Research Assistant</p>
               <p class="stop__dates">Nov 2021 &ndash; Jul 2023</p>
               <p class="stop__metric"><strong>200+ road stretches</strong>, 10 years of NHAI data, infrastructure ROI.</p>
-              <details class="stop__more">
+              <div class="stop__panels">
+              <details class="stop__more stop__detail-panel">
                 <summary>The detail</summary>
                 <ul class="stop__detail">
                     <li>Geo-processed the road network in ArcGIS, then built econometric models measuring how road investment translates into regional development.</li>
@@ -224,6 +238,17 @@
                     <li>Researched environmental economics and the Earth System Boundaries framework.</li>
                 </ul>
               </details>
+              <details class="stop__more stop__think">
+                <summary>The thinking</summary>
+                <div class="stop__detail">
+                    <p class="think-step"><span class="think-step__k">Saw</span><span>Ten years of NHAI road data nobody had structured.</span></p>
+                    <p class="think-step"><span class="think-step__k">Asked</span><span>Does infrastructure spend actually translate into regional development, or is that assumed?</span></p>
+                    <p class="think-step"><span class="think-step__k">Built</span><span>Geo-processed 200+ road stretches in ArcGIS and modelled the return econometrically.</span></p>
+                    <p class="think-step"><span class="think-step__k">Did</span><span>Produced a measurable answer in place of an assumed one.</span></p>
+                  <p class="stop__think-link"><a class="inline-link" href="thinking.html#data-to-signal">Full framework</a></p>
+                </div>
+              </details>
+              </div>
             </li>
 
             <li class="stop" data-lat="9.9312" data-lon="76.2673">
@@ -233,7 +258,8 @@
               <p class="stop__role">Market Research Analyst</p>
               <p class="stop__dates">Sep 2023 &ndash; Nov 2023</p>
               <p class="stop__metric"><strong>500+ interviews</strong> across 4 state markets, behind a <strong>$100K raise</strong>.</p>
-              <details class="stop__more">
+              <div class="stop__panels">
+              <details class="stop__more stop__detail-panel">
                 <summary>The detail</summary>
                 <ul class="stop__detail">
                     <li>The four markets: <strong>Karnataka, Tamil Nadu, Telangana and Andhra Pradesh</strong>. Fieldwork for a sustainable footwear line.</li>
@@ -242,6 +268,17 @@
                     <li>Owned the investor relationship through due diligence.</li>
                 </ul>
               </details>
+              <details class="stop__more stop__think">
+                <summary>The thinking</summary>
+                <div class="stop__detail">
+                    <p class="think-step"><span class="think-step__k">Saw</span><span>A sustainable footwear line with no demand evidence, and investors who would not move without it.</span></p>
+                    <p class="think-step"><span class="think-step__k">Asked</span><span>Is there real willingness to pay, and at what price?</span></p>
+                    <p class="think-step"><span class="think-step__k">Built</span><span>500+ interviews across four state markets, then a feasibility model on pricing and cost structure.</span></p>
+                    <p class="think-step"><span class="think-step__k">Did</span><span>The evidence base closed a $100K pre-series raise.</span></p>
+                  <p class="stop__think-link"><a class="inline-link" href="thinking.html#data-to-signal">Full framework</a></p>
+                </div>
+              </details>
+              </div>
             </li>
 
             <li class="stop" data-lat="25.2048" data-lon="55.2708">
@@ -251,7 +288,8 @@
               <p class="stop__role">Business Development Manager &middot; Physical Commodity Trade (Kraftliner Paper)</p>
               <p class="stop__dates">Nov 2023 &ndash; Aug 2025</p>
               <p class="stop__metric">Set up a <strong>$3.5M Kraft paper trade line</strong> from nothing, turned over in <strong>9 months</strong>.</p>
-              <details class="stop__more">
+              <div class="stop__panels">
+              <details class="stop__more stop__detail-panel">
                 <summary>The detail</summary>
                 <ul class="stop__detail">
                     <li>The gap: local mills could not meet quality benchmarks, leaving buyers stuck on fragmented imports.</li>
@@ -262,6 +300,17 @@
                       <strong>XO PACK PVT LTD</strong>. <strong>20+ people</strong> coordinated across 2 markets.</li>
                 </ul>
               </details>
+              <details class="stop__more stop__think">
+                <summary>The thinking</summary>
+                <div class="stop__detail">
+                    <p class="think-step"><span class="think-step__k">Saw</span><span>Indian and Sri Lankan buyers on fragmented import channels, because local mills could not hit quality benchmarks.</span></p>
+                    <p class="think-step"><span class="think-step__k">Asked</span><span>Is the gap wide enough and durable enough to underwrite?</span></p>
+                    <p class="think-step"><span class="think-step__k">Built</span><span>Scenario DCF across conservative, base and optimistic cases, stress-tested on shipping, raw material, blending and labour, plus primary research on competitor cost structure.</span></p>
+                    <p class="think-step"><span class="think-step__k">Did</span><span>Built the book on both sides and ran $3.5M through in 9 months.</span></p>
+                  <p class="stop__think-link"><a class="inline-link" href="thinking.html#friction-first">Full framework</a></p>
+                </div>
+              </details>
+              </div>
             </li>
 
             <li class="stop" data-lat="40.4168" data-lon="-3.7038">
@@ -271,7 +320,8 @@
               <p class="stop__role">Master in Applied Economics and Master in Management</p>
               <p class="stop__dates">Sep 2024 &ndash; Jul 2026</p>
               <p class="stop__metric">Tech Venture Lab finalist, <strong>projected 45% loyalty uplift</strong>.</p>
-              <details class="stop__more">
+              <div class="stop__panels">
+              <details class="stop__more stop__detail-panel">
                 <summary>The detail</summary>
                 <ul class="stop__detail">
                     <li>Two degrees: Management, Sep 2024 to Dec 2025, GPA 3.64 / 4.0, and Applied Economics, Sep 2025 to
@@ -280,7 +330,26 @@
                     <li>Tech Venture Lab, under the Management degree: defined the CAC and payback thresholds on the
                       Hyundai Espa&ntilde;a work, pitched to the CTO and CFO.</li>
                 </ul>
+                <figure class="figure-inline">
+                  <picture>
+                    <source srcset="images/manu-graduation.webp" type="image/webp">
+                    <img src="images/manu-graduation-opt.jpg" alt="IE University graduation ceremony, 2025."
+                      width="480" height="320" loading="lazy" decoding="async">
+                  </picture>
+                  <figcaption>IE University graduation ceremony, 2025.</figcaption>
+                </figure>
               </details>
+              <details class="stop__more stop__think">
+                <summary>The thinking</summary>
+                <div class="stop__detail">
+                    <p class="think-step"><span class="think-step__k">Saw</span><span>Churn after the four-year free service window, with no retention mechanism in place.</span></p>
+                    <p class="think-step"><span class="think-step__k">Asked</span><span>What would retention have to cost to be worth doing?</span></p>
+                    <p class="think-step"><span class="think-step__k">Built</span><span>Churn prediction, plus CAC and payback-period thresholds to test commercial viability.</span></p>
+                    <p class="think-step"><span class="think-step__k">Did</span><span>Pitched the approach to the CTO and CFO with a projected 45% loyalty uplift. Projection presented, never implemented.</span></p>
+                  <p class="stop__think-link"><a class="inline-link" href="thinking.html#data-to-signal">Full framework</a></p>
+                </div>
+              </details>
+              </div>
             </li>
 
             <li class="stop" data-lat="14.6819" data-lon="77.6006">
@@ -290,7 +359,8 @@
               <p class="stop__role">Co-Founder and Chief Financial Officer</p>
               <p class="stop__dates">Sep 2025 &ndash; Present</p>
               <p class="stop__metric"><strong>150+ farmers</strong> aggregated, facility in build-out, outcome open.</p>
-              <details class="stop__more">
+              <div class="stop__panels">
+              <details class="stop__more stop__detail-panel">
                 <summary>The detail</summary>
                 <ul class="stop__detail">
                     <li><strong>10-member core team.</strong> Feedstock network of <strong>150+ farmers</strong> under aggregation agreements, counted separately from the team.</li>
@@ -298,7 +368,27 @@
                     <li>Modelled positive contribution margin with negative working capital, financed through forward offtakes. Evaluating Puro.earth and Verra methodologies.</li>
                     <li>Pitched 15+ investors. IE Venture Day winner, no round closed. Digital MRV is roadmap rather than built.</li>
                 </ul>
+                <figure class="figure-inline figure-wide">
+                  <picture>
+                    <source srcset="images/biochar-presentation.webp" type="image/webp">
+                    <img src="images/biochar-presentation-opt.jpg"
+                      alt="Vaayubon slide showing biochar carbon removal market growth and the durable carbon storage case."
+                      width="1600" height="1066" loading="lazy" decoding="async">
+                  </picture>
+                  <figcaption>Biochar market slide from the Vaayubon investor deck.</figcaption>
+                </figure>
               </details>
+              <details class="stop__more stop__think">
+                <summary>The thinking</summary>
+                <div class="stop__detail">
+                    <p class="think-step"><span class="think-step__k">Saw</span><span>Agricultural residue burned across India while Article 6 implementation was still being written.</span></p>
+                    <p class="think-step"><span class="think-step__k">Asked</span><span>Does a credit count at all under rules that do not exist yet, and can the unit economics work without subsidy?</span></p>
+                    <p class="think-step"><span class="think-step__k">Built</span><span>Contribution margin modelled per tonne against forward offtakes, giving negative working capital.</span></p>
+                    <p class="think-step"><span class="think-step__k">Did</span><span>Aggregated 150+ farmers in Anantapur. Facility in build-out, outcome still open.</span></p>
+                  <p class="stop__think-link"><a class="inline-link" href="thinking.html#climate-scale">Full framework</a></p>
+                </div>
+              </details>
+              </div>
             </li>
 
           </ol>
@@ -357,6 +447,7 @@
           rel="noopener noreferrer">LinkedIn</a>
         <a class="footer3__link" href="https://github.com/MythilManuMuralee" target="_blank"
           rel="noopener noreferrer">GitHub</a>
+        <a class="footer3__link" href="thinking.html">Thinking</a>
         <a class="footer3__link" href="cv.html">CV</a>
       </div>
       <p class="footer3__meta">&copy; 2026 Manu Mythil Muralee</p>
