@@ -106,7 +106,7 @@
   }
 
   wireExpander('route-expand', 'details.stop__detail-panel', '');
-  wireExpander('route-expand-think', 'details.stop__think', ' thinking');
+  wireExpander('route-expand-think', 'details.stop__think', ' working');
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

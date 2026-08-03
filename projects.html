@@ -35,7 +35,17 @@
                 <li><a href="index.html" class="nav3__link">Home</a></li>
                 <li><a href="projects.html" class="nav3__link" aria-current="page">Projects</a></li>
                 <li><a href="cv.html" class="nav3__link">CV</a></li>
+                <li><a href="frameworks.html" class="nav3__link">Frameworks</a></li>
             </ul>
+      <details class="nav3__mobile">
+        <summary class="nav3__toggle" aria-label="Menu"><span></span><span></span><span></span></summary>
+        <ul class="nav3__mlist">
+          <li><a href="index.html" class="nav3__mlink">Home</a></li>
+          <li><a href="projects.html" class="nav3__mlink" aria-current="page">Projects</a></li>
+          <li><a href="cv.html" class="nav3__mlink">CV</a></li>
+          <li><a href="frameworks.html" class="nav3__mlink">Frameworks</a></li>
+        </ul>
+      </details>
         </div>
     </nav>
 <main id="main-content">
@@ -96,7 +106,7 @@
                 </div>
 
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#hf-volatility">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#hf-volatility">The working behind this</a></p>
                 <div class="project-detail__tags reveal" style="margin-top: 2rem;">
                     <span class="tag">Python</span>
                     <span class="tag">XGBoost</span>
@@ -143,7 +153,7 @@
                 </div>
 
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#macro-regime">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#macro-regime">The working behind this</a></p>
                 <div class="project-detail__tags reveal" style="margin-top: 2rem;">
                     <span class="tag">Python</span>
                     <span class="tag">TensorFlow</span>
@@ -174,14 +184,49 @@
                     </p>
                 </div>
                 
-                <div class="reveal" style="margin-bottom: 2rem; margin-top: 1.5rem;">
-                    <div style="display: inline-block; border: 1px solid rgba(255,255,255,0.3); padding: 0.5rem 1rem; border-radius: 4px; background: rgba(255, 255, 255, 0.05);">
-                        <span style="color: #fff; font-weight: bold;">Results Badge:</span> <span style="color: var(--mid);">28,429 Cointegrated Pairs Found</span>
-                    </div>
+                <div class="reveal dataviz--in-card" style="margin-bottom: 2rem; margin-top: 1.5rem;">
+                    <div class="dataviz">
+  <svg class="dataviz__wide" viewBox="0 0 560 130" role="img" aria-labelledby="funnel-w-title">
+    <title id="funnel-w-title">Pairs trading funnel: 503 tickers screened down to 118,833 candidate pairs, 28,429 confirmed cointegrated</title>
+    <line x1="30" y1="65" x2="530" y2="65" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <g>
+      <circle cx="60" cy="65" r="6" fill="#c8a05a"/>
+      <text x="60" y="30" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700" font-family="Outfit,sans-serif">503</text>
+      <text x="60" y="98" text-anchor="middle" fill="#6e6e6e" font-size="12" font-family="Inter,sans-serif">tickers screened</text>
+    </g>
+    <path d="M85 65 L275 65" stroke="#c8a05a" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <g>
+      <circle cx="300" cy="65" r="7" fill="#c8a05a"/>
+      <text x="300" y="30" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700" font-family="Outfit,sans-serif">118,833</text>
+      <text x="300" y="98" text-anchor="middle" fill="#6e6e6e" font-size="12" font-family="Inter,sans-serif">fundamental twin pairs</text>
+    </g>
+    <path d="M325 65 L495 65" stroke="#c8a05a" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <g>
+      <circle cx="520" cy="65" r="8" fill="#c8a05a"/>
+      <text x="500" y="30" text-anchor="end" fill="#ffffff" font-size="22" font-weight="700" font-family="Outfit,sans-serif">28,429</text>
+      <text x="500" y="98" text-anchor="end" fill="#6e6e6e" font-size="12" font-family="Inter,sans-serif">cointegrated (ADF)</text>
+    </g>
+  </svg>
+  <svg class="dataviz__narrow" viewBox="0 0 320 220" role="img" aria-labelledby="funnel-n-title">
+    <title id="funnel-n-title">Pairs trading funnel: 503 tickers screened down to 118,833 candidate pairs, 28,429 confirmed cointegrated</title>
+    <line x1="30" y1="30" x2="30" y2="190" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <circle cx="30" cy="30" r="6" fill="#c8a05a"/>
+    <text x="50" y="26" fill="#ffffff" font-size="20" font-weight="700" font-family="Outfit,sans-serif">503</text>
+    <text x="50" y="46" fill="#6e6e6e" font-size="12" font-family="Inter,sans-serif">tickers screened</text>
+    <path d="M30 55 L30 105" stroke="#c8a05a" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <circle cx="30" cy="110" r="7" fill="#c8a05a"/>
+    <text x="50" y="106" fill="#ffffff" font-size="20" font-weight="700" font-family="Outfit,sans-serif">118,833</text>
+    <text x="50" y="126" fill="#6e6e6e" font-size="12" font-family="Inter,sans-serif">fundamental twin pairs</text>
+    <path d="M30 135 L30 175" stroke="#c8a05a" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <circle cx="30" cy="185" r="8" fill="#c8a05a"/>
+    <text x="50" y="181" fill="#ffffff" font-size="20" font-weight="700" font-family="Outfit,sans-serif">28,429</text>
+    <text x="50" y="201" fill="#6e6e6e" font-size="12" font-family="Inter,sans-serif">cointegrated (ADF)</text>
+  </svg>
+</div>
                 </div>
 
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#factor-neutral">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#factor-neutral">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">Python</span>
                     <span class="tag">DBSCAN</span>
@@ -241,7 +286,7 @@
                     </div>
                 </div>
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#system-shift">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#system-shift">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">AI Modeling</span>
                     <span class="tag">ESG</span>
@@ -293,7 +338,7 @@
                     </div>
                 </div>
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#agentic-ai">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#agentic-ai">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">Python</span>
                     <span class="tag">LLM Orchestration</span>
@@ -352,7 +397,7 @@
                     </div>
                 </div>
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#data-to-signal">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#data-to-signal">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">AI Strategy</span>
                     <span class="tag">Customer Retention</span>
@@ -410,7 +455,7 @@
                     </div>
                 </div>
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#friction-first">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#friction-first">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">Trade Execution</span>
                     <span class="tag">Supply Chain</span>
@@ -454,7 +499,7 @@
                     </div>
                 </div>
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#data-to-signal">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#data-to-signal">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">Market Research</span>
                     <span class="tag">Data Analysis</span>
@@ -482,7 +527,7 @@
                     <span class="t-label">09 · Climate Tech | Fintech | Carbon Markets | Co-founder</span>
                     <h2 class="t-h2" style="margin-top: 1rem;">Vaayubon (VAYU)</h2>
                     <p class="t-body-lg" style="color: var(--mid); margin-top: 1rem; max-width: 800px;">
-                        A carbon removal venture converting India's agricultural waste into durable biochar carbon removal. As Co-Founder and Chief Financial Officer I own the unit economics, the carbon credit pricing, and the measurement, reporting and verification approach. Modelled positive contribution margin per tonne with negative working capital, financed through forward offtakes.
+                        A carbon removal venture converting India's agricultural waste into durable biochar carbon removal. As Co-Founder and Chief Financial Officer I own the unit economics, the carbon credit pricing, and the measurement, reporting and verification approach. Modelled positive contribution margin per tonne against forward offtakes.
                     </p>
                 </div>
 
@@ -508,7 +553,7 @@
                 </div>
 
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#climate-scale">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#climate-scale">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">Unit Economics</span>
                     <span class="tag">Working Capital</span>
@@ -564,7 +609,7 @@
                 </div>
 
                 
-                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="thinking.html#vba-internalization">The thinking behind this</a></p>
+                <p class="reveal" style="margin-bottom:1.5rem;"><a class="inline-link" href="frameworks.html#vba-internalization">The working behind this</a></p>
                 <div class="project-detail__tags reveal">
                     <span class="tag">Impact Accounting</span>
                     <span class="tag">Sustainability</span>
@@ -605,7 +650,7 @@
                     rel="noopener noreferrer">LinkedIn</a>
                 <a class="footer3__link" href="https://github.com/MythilManuMuralee" target="_blank"
                     rel="noopener noreferrer">GitHub</a>
-                <a class="footer3__link" href="thinking.html">Thinking</a>
+                <a class="footer3__link" href="frameworks.html">Frameworks</a>
                 <a class="footer3__link" href="cv.html">CV</a>
             </div>
             <p class="footer3__meta">&copy; 2026 Manu Mythil Muralee</p>

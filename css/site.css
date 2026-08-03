@@ -127,6 +127,94 @@ body {
   }
 }
 
+/* ---------- Mobile nav: a <details> disclosure, not JS state ----------
+   Four items in the horizontal nav3__list overflow a 320px viewport, so
+   below 480px it hides and a hamburger reveals the same four links as a
+   dropdown instead. Built on <details>/<summary> rather than a JS click
+   handler, so the menu opens even if the page's script never runs. */
+.nav3__mobile {
+  display: none;
+}
+
+@media (max-width: 479px) {
+  .nav3__list {
+    display: none;
+  }
+
+  .nav3__mobile {
+    display: block;
+    position: relative;
+  }
+
+  .nav3__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .nav3__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav3__toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.3s var(--ease-out), opacity 0.2s;
+  }
+
+  .nav3__mobile[open] .nav3__toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav3__mobile[open] .nav3__toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav3__mobile[open] .nav3__toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav3__mlist {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(20, 20, 20, 0.98);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 10px;
+    padding: 0.5rem;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav3__mlink {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--light);
+  }
+
+  .nav3__mlink:hover,
+  .nav3__mlink:focus-visible,
+  .nav3__mlink[aria-current="page"] {
+    color: var(--white);
+    background: var(--accent-soft);
+  }
+}
+
 /* ================================================
    HERO — the whole argument, above the fold
    ================================================ */
@@ -174,6 +262,12 @@ body {
   font-weight: 600;
 }
 
+/* Two short proof sentences instead of one: commodity, then quant, both
+   above the fold. Second sits tighter underneath the first. */
+.hero3__proof + .hero3__proof--second {
+  margin-top: -1.25rem;
+}
+
 .hero3__meta {
   display: flex;
   flex-direction: column;
@@ -216,7 +310,22 @@ body {
   border-radius: 999px;
   font-size: 0.9375rem;
   font-weight: 500;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   transition: border-color 0.25s var(--ease-out), background-color 0.25s var(--ease-out);
+}
+
+/* Below 480px the email address is the longest token on the page; let the
+   pill go full width rather than let the address force horizontal scroll. */
+@media (max-width: 479px) {
+  .contact-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-strip__link {
+    justify-content: center;
+  }
 }
 
 .contact-strip__link:hover,
@@ -262,8 +371,11 @@ body {
    PROOF STRIP — Model it / Price it / Sell it
    ================================================ */
 
+/* A distinct tint per section, so a scroll down the page has visible
+   rhythm rather than one flat black surface from hero to footer. */
 .proof {
   padding-block: 3rem;
+  background: var(--dark);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -526,9 +638,21 @@ body {
 }
 
 .stop__place {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
   font-size: 0.875rem;
   color: var(--mid);
   margin-bottom: 0.375rem;
+}
+
+/* A small consistent glyph per stop, so the timeline has rhythm rather
+   than reading as five identical text blocks. */
+.stop__pin {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  color: var(--accent);
 }
 
 .stop__org {
@@ -559,9 +683,14 @@ body {
   max-width: 46ch;
 }
 
+/* The headline number in each stop's default line is pulled up in size,
+   so the number itself carries the scroll, not just the surrounding prose. */
 .stop__metric strong {
   color: var(--white);
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 1.1em;
+  letter-spacing: -0.01em;
 }
 
 @media (min-width: 900px) {
@@ -632,6 +761,7 @@ body {
 
 .close-card {
   padding-block: 3rem 4rem;
+  background: radial-gradient(ellipse 120% 100% at 50% 0%, var(--accent-soft), transparent 60%), var(--black);
   border-top: 1px solid var(--hairline);
 }
 
@@ -645,14 +775,17 @@ body {
   margin-bottom: 2rem;
 }
 
-.close-card__pair {
+/* Mobile-first: stacked by default. Three entries, each with its year and
+   headline number prominent, so the vertical spread (commodity, quant,
+   origination) reads on a phone without a wide screen to lay them out. */
+.close-card__trio {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
-.close-card__half {
+.close-card__third {
   padding-top: 1rem;
   border-top: 1px solid var(--accent);
 }
@@ -677,11 +810,21 @@ body {
   font-weight: 600;
 }
 
-.close-card__avail {
+/* The method line spans full width beneath the trio, on every size. */
+.close-card__method {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--light);
   max-width: var(--measure);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+  margin-bottom: 2rem;
+}
+
+.close-card__avail {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--white);
   margin-bottom: 1.75rem;
 }
 
@@ -690,9 +833,9 @@ body {
     padding-block: 5rem 6rem;
   }
 
-  .close-card__pair {
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+  .close-card__trio {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.25rem;
   }
 }
 
@@ -1258,4 +1401,54 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+/* ================================================
+   INLINE DATA VISUALS
+   Built from numbers already stated in prose elsewhere
+   on the page. Two SVG variants per visual: the funnel
+   and bars reflow to a vertical stack under 640px rather
+   than just shrinking, so the labels stay readable on a
+   phone. Toggled by CSS, both cost nothing over the wire
+   beyond the inline markup itself.
+   ================================================ */
+
+.dataviz {
+  margin-top: 1.25rem;
+  max-width: 420px;
+}
+
+.dataviz svg {
+  width: 100%;
+  height: auto;
+}
+
+/* The mobile-first display toggle below is the only thing controlling
+   visibility; a stray display rule on the descendant-plus-type selector
+   above would outrank these single-class rules and show both variants
+   at once, which is exactly what shipped the first time. */
+.dataviz__wide {
+  display: none;
+}
+
+.dataviz__narrow {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .dataviz {
+    max-width: 560px;
+  }
+
+  .dataviz__wide {
+    display: block;
+  }
+
+  .dataviz__narrow {
+    display: none;
+  }
+}
+
+.dataviz--in-card {
+  max-width: 100%;
 }
